@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+public class BallTest : MonoBehaviour
 {
     public Rigidbody sphere;
     public Collider col;
