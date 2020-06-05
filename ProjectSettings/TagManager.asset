@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Death
+  - Plate
+  - Hard
+  - Soft
   layers:
   - Default
   - TransparentFX
