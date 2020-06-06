@@ -201,7 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plateNum: 175
   startPos: {fileID: 886536108}
-  goalPos: {fileID: 0}
+  goalPos: {fileID: 5573899750689887841}
   plate: {fileID: 3239302706505915686, guid: 7454d3725d5524a9fb9852d92d1a04c7, type: 3}
   plateOffset: 0.1
   angleOffset: 5

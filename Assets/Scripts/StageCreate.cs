@@ -29,7 +29,12 @@ public class StageCreate : MonoBehaviour
 
         for(int i=0; i < plateNum; ++i)
         {
-            Instantiate(plate, startPosVec - (Vector3.up * plateOffset * i) ,Quaternion.Euler(0, -angleOffset * i, 0), transform);
+            var pos = startPosVec - (Vector3.up * plateOffset * i);
+            if(pos.y < goalPos.transform.position.y)
+            {
+                break;
+            }
+            Instantiate(plate, pos ,Quaternion.Euler(0, -angleOffset * i, 0), transform);
         }
     }
 
