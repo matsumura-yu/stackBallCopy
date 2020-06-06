@@ -14,7 +14,10 @@ public class Ball : MonoBehaviour
     public float burstTime = 2.5f;
 
     public float successTime = 0;
-    // Start is called before the first frame update
+
+    // 燃えている状態
+    public bool isBurst = false;
+
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -27,13 +30,15 @@ public class Ball : MonoBehaviour
         {
             onClicked = true;
             // 成功時間を測る
-            successTime += Time.deltaTime;
+            if (!isBurst) successTime += Time.deltaTime;
+            else successTime -= Time.deltaTime;
             Debug.Log(successTime);
-            if (successTime > burstTime)
+            if (isBurst == false && successTime > burstTime)
             {
                 Debug.Log("burst");
                 // 燃える処理を書く
-                this.GetComponent<Renderer>().material.color = Color.red;
+                Burst();
+                isBurst = true;
             }
         }
         else
@@ -41,6 +46,17 @@ public class Ball : MonoBehaviour
             successTime -= Time.deltaTime;
             onClicked = false;
         }
+
+        if (isBurst)
+        {
+            if(successTime <= 0)
+            {
+                Normal();
+                isBurst = false;
+            }
+        }
+        
+        if (successTime < 0) successTime = 0;
     }
 
     void Jump()
@@ -56,29 +72,47 @@ public class Ball : MonoBehaviour
         Destroy(gameObject);
     }
 
+    // TODO
+    // Burst時の処理
+    void Burst()
+    {
+        this.GetComponent<Renderer>().material.color = Color.red;
+    }
+
+    // TODO 
+    // 普通に戻る時の処理
+    void Normal()
+    {
+        this.GetComponent<Renderer>().material.color = Color.white;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (onClicked)
+        if (collision.gameObject.CompareTag("Goal"))
         {
-            if (collision.gameObject.CompareTag("Soft"))
-            {
-                // TODO Break処理
-                Destroy(collision.gameObject.transform.parent.gameObject);
-            }
-            else if (collision.gameObject.CompareTag("Hard"))
-            {
-                SceneManager.Instance.currentGameState = GameState.Failed;
-                Break();
-            }else if (collision.gameObject.CompareTag("Goal"))
-            {
-                SceneManager.Instance.currentGameState = GameState.Success;
-                Jump();
-            }
+            SceneManager.Instance.currentGameState = GameState.Success;
+            Jump();
         }
         else
         {
-            
-            Jump();
+            if (onClicked)
+            {
+                if (!isBurst)
+                {
+                    if (collision.gameObject.CompareTag("Hard"))
+                    {
+                        SceneManager.Instance.currentGameState = GameState.Failed;
+                        Break();
+                    }
+                }
+                
+                // TODO Break処理
+                Destroy(collision.gameObject.transform.parent.gameObject);
+            }
+            else
+            {
+                Jump();
+            }
         }
     }
 }
