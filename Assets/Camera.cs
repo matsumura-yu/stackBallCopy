@@ -12,6 +12,7 @@ public class Camera : MonoBehaviour
 
     private void Awake()
     {
+        if (target == null) target = GameObject.Find("Ball").transform;
         // カメラとボールのy座標の差をoffsetとする
         offset = transform.position.y - target.position.y;
     }
@@ -25,6 +26,7 @@ public class Camera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (target == null) return;
         if(target.position.y < minY)
         {
             minY = target.position.y;

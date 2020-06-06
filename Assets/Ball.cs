@@ -50,6 +50,12 @@ public class Ball : MonoBehaviour
         rb.velocity = Vector3.up * jumpHeight;
     }
 
+    void Break()
+    {
+        // TODO Ballが壊れる処理
+        Destroy(gameObject);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (onClicked)
@@ -58,12 +64,15 @@ public class Ball : MonoBehaviour
             {
                 // TODO Break処理
                 Destroy(collision.gameObject.transform.parent.gameObject);
-
-               
             }
             else if (collision.gameObject.CompareTag("Hard"))
             {
-                Debug.Log("game over");
+                SceneManager.Instance.currentGameState = GameState.Failed;
+                Break();
+            }else if (collision.gameObject.CompareTag("Goal"))
+            {
+                SceneManager.Instance.currentGameState = GameState.Success;
+                Jump();
             }
         }
         else

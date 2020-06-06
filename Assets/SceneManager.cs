@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 // ゲームのレベル
 public enum GameState
 {
@@ -35,6 +34,44 @@ public class SceneManager : MonoBehaviour
 
         level = 1;
         currentGameState = GameState.Waiting;
+    }
+
+    private void Update()
+    {
+        if(currentGameState == GameState.Failed)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                // シーンの再ロード
+                UnityEngine.SceneManagement.Scene loadScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+                // Sceneの読み直し
+                UnityEngine.SceneManagement.SceneManager.LoadScene(loadScene.name);
+
+                currentGameState = GameState.Waiting;
+            }
+        }
+
+        if(currentGameState == GameState.Waiting)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                currentGameState = GameState.Playing;
+            }
+        }
+
+        if(currentGameState == GameState.Success)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                // シーンの再ロード
+                UnityEngine.SceneManagement.Scene loadScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+                // Sceneの読み直し
+                UnityEngine.SceneManagement.SceneManager.LoadScene(loadScene.name);
+                // レベルを上げる
+                level++;
+                currentGameState = GameState.Waiting;
+            }
+        }
     }
 
 }
