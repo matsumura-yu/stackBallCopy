@@ -8,6 +8,7 @@ TagManager:
   - Plate
   - Hard
   - Soft
+  - Goal
   layers:
   - Default
   - TransparentFX
