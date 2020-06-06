@@ -9,6 +9,11 @@ public class Ball : MonoBehaviour
     public float jumpHeight;
 
     public bool onClicked;
+
+    // この時間を超えるとボールが燃える
+    public float burstTime = 2.5f;
+
+    public float successTime = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +26,19 @@ public class Ball : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             onClicked = true;
+            // 成功時間を測る
+            successTime += Time.deltaTime;
+            Debug.Log(successTime);
+            if (successTime > burstTime)
+            {
+                Debug.Log("burst");
+                // 燃える処理を書く
+                this.GetComponent<Renderer>().material.color = Color.red;
+            }
         }
         else
         {
-            Debug.Log("false");
+            successTime -= Time.deltaTime;
             onClicked = false;
         }
     }
@@ -44,6 +58,8 @@ public class Ball : MonoBehaviour
             {
                 // TODO Break処理
                 Destroy(collision.gameObject.transform.parent.gameObject);
+
+               
             }
             else if (collision.gameObject.CompareTag("Hard"))
             {
@@ -52,6 +68,7 @@ public class Ball : MonoBehaviour
         }
         else
         {
+            
             Jump();
         }
     }
