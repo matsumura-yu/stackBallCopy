@@ -4,19 +4,9 @@ using UnityEngine;
 
 public class Breakable : MonoBehaviour
 {
-    float force = 500f;
+    public float force = 500f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space)) Break();
-    }
+    public Vector3 offset = new Vector3(0, 0f, 0f);
 
     public void Break()
     {
@@ -30,16 +20,12 @@ public class Breakable : MonoBehaviour
     public void ExplodePart(Transform part, float force)
     {
         // part.transform.parent = null;
-        Rigidbody rb = part.gameObject.AddComponent<Rigidbody>();
+        Rigidbody rb = part.GetComponent<Rigidbody>();
         rb.isKinematic = false;
         rb.useGravity = true;
-        rb.AddExplosionForce(force, new Vector3(0, -0.5f,0), 0f);
+        rb.AddExplosionForce(force, this.transform.position - offset, 0f);
+        part.GetComponent<Collider>().enabled = false;
         Destroy(part.gameObject, 10f);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("collision");
-        // Break();
+        //part.parent = null;
     }
 }
