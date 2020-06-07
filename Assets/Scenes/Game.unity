@@ -514,6 +514,7 @@ MonoBehaviour:
   onClicked: 0
   burstTime: 2.5
   successTime: 0
+  isBurst: 0
 --- !u!1 &1394920130 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5374911769838918609, guid: 3c2faf6cfa33244e2b03cc49246406bf,
@@ -729,6 +730,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 830685982, guid: 3c2faf6cfa33244e2b03cc49246406bf, type: 3}
+      propertyPath: ball
+      value: 
+      objectReference: {fileID: 1378624825}
     - target: {fileID: 5374911769838918608, guid: 3c2faf6cfa33244e2b03cc49246406bf,
         type: 3}
       propertyPath: m_LocalPosition.x
