@@ -20,6 +20,8 @@ public class Ball : MonoBehaviour
 
     public float fallSpeed;
 
+    public ParticleSystem system;
+
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -77,18 +79,16 @@ public class Ball : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // TODO
     // Burst時の処理
     void Burst()
     {
-        this.GetComponent<Renderer>().material.color = Color.red;
+        system.Play();
     }
 
-    // TODO 
     // 普通に戻る時の処理
     void Normal()
     {
-        this.GetComponent<Renderer>().material.color = Color.white;
+        system.Stop();
     }
 
     private void OnCollisionEnter(Collision collision)
