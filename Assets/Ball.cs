@@ -18,6 +18,8 @@ public class Ball : MonoBehaviour
     // 燃えている状態
     public bool isBurst = false;
 
+    public float fallSpeed;
+
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -28,6 +30,7 @@ public class Ball : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
+            Fall();
             onClicked = true;
             // 成功時間を測る
             if (!isBurst) successTime += Time.deltaTime;
@@ -64,10 +67,12 @@ public class Ball : MonoBehaviour
         // TODO Jumpのアニメーションも書きたい
         // rb.AddForce(Vector3.up * jumpHeight, ForceMode.VelocityChange);
         rb.velocity = Vector3.up * jumpHeight;
+        AudioManager.Instance.Play("jump");
     }
 
     void Break()
     {
+        AudioManager.Instance.Play("broke");
         // TODO Ballが壊れる処理
         Destroy(gameObject);
     }
@@ -97,22 +102,29 @@ public class Ball : MonoBehaviour
         {
             if (onClicked)
             {
-                if (!isBurst)
+                // 失敗時
+                if(!isBurst && collision.gameObject.CompareTag("Hard"))
                 {
-                    if (collision.gameObject.CompareTag("Hard"))
-                    {
-                        SceneManager.Instance.currentGameState = GameState.Failed;
-                        Break();
-                    }
+                    SceneManager.Instance.currentGameState = GameState.Failed;
+                    Break();
                 }
-                
-                // TODO Break処理
-                Destroy(collision.gameObject.transform.parent.gameObject);
+                else
+                {
+                    // 成功時
+                    // TODO Break処理
+                    collision.transform.parent.GetComponent<Breakable>().Break();
+                    AudioManager.Instance.Play("explode");
+                }
             }
             else
             {
                 Jump();
             }
         }
+    }
+
+    public void Fall()
+    {
+        this.transform.Translate(-Vector3.up * fallSpeed);
     }
 }
