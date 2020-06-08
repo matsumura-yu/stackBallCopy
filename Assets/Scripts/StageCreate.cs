@@ -22,6 +22,11 @@ public class StageCreate : MonoBehaviour
     // plateの回転角差分
     public float angleOffset;
 
+    public GameObject plate2;
+
+    public GameObject plate3;
+
+    public GameObject plate4;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +39,32 @@ public class StageCreate : MonoBehaviour
             {
                 break;
             }
-            Instantiate(plate, pos ,Quaternion.Euler(0, -angleOffset * i, 0), transform);
+
+            if(i % 10 == 0)
+            {
+                Instantiate(plate3, pos, Quaternion.Euler(0, -angleOffset * i, 0), transform);
+            }
+            else if(i % 3== 0)
+            {
+                Instantiate(plate2, pos, Quaternion.Euler(0, -angleOffset * i, 0), transform);
+            }
+            else if(i % 5 == 0)
+            {
+                var r = Random.Range(0, 2);
+                if(r == 1)
+                {
+                    Instantiate(plate4, pos, Quaternion.Euler(0, -angleOffset * i, 0), transform);
+                }
+                else {
+                    Instantiate(plate, pos, Quaternion.Euler(0, -angleOffset * i, 0), transform);
+                }
+
+            }
+            else
+            {
+                Instantiate(plate, pos, Quaternion.Euler(0, -angleOffset * i, 0), transform);
+            }
+            
         }
     }
 

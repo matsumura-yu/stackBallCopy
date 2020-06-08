@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 84263619736769095}
   m_Layer: 0
   m_Name: Part3
-  m_TagString: Soft
+  m_TagString: Hard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,7 +171,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b3f9f668f0e2148e8b8f1d67527fd528, type: 2}
+  - {fileID: 2100000, guid: 37429f330a26c4dcd984a0839254bdea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -272,6 +272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 500
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &5578978988853364650
 GameObject:
   m_ObjectHideFlags: 0

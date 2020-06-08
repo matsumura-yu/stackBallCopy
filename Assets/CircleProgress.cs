@@ -19,6 +19,10 @@ public class CircleProgress : MonoBehaviour
         {
             time = ball.successTime / ball.burstTime;
         }
+        else
+        {
+            time = 0;
+        }
         // 0~1までで表す
         circle.fillAmount = time;
     }

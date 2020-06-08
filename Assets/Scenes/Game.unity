@@ -542,6 +542,9 @@ MonoBehaviour:
   plate: {fileID: 3239302706505915686, guid: 7454d3725d5524a9fb9852d92d1a04c7, type: 3}
   plateOffset: 0.1
   angleOffset: 5
+  plate2: {fileID: 3239302706505915686, guid: 04dd1c01cec9442b2bb8ccd77ac52bfc, type: 3}
+  plate3: {fileID: 3239302706505915686, guid: b4c4a03eb038f45b69394e3f003e8aa1, type: 3}
+  plate4: {fileID: 3239302706505915686, guid: c559f6b0d3e694b9fbf60a8570ec176d, type: 3}
 --- !u!114 &722804939
 MonoBehaviour:
   m_ObjectHideFlags: 0

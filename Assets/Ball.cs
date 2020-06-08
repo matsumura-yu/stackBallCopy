@@ -24,6 +24,7 @@ public class Ball : MonoBehaviour
 
     public ParticleSystem system;
 
+
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -35,19 +36,21 @@ public class Ball : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            Fall();
-            onClicked = true;
-            // 成功時間を測る
-            if (!isBurst) successTime += Time.deltaTime;
-            else successTime -= Time.deltaTime;
-            Debug.Log(successTime);
-            if (isBurst == false && successTime > burstTime)
-            {
-                Debug.Log("burst");
-                // 燃える処理を書く
-                Burst();
-                isBurst = true;
-            }
+                Fall();
+                onClicked = true;
+                // 成功時間を測る
+                if (!isBurst) successTime += Time.deltaTime;
+                else successTime -= Time.deltaTime;
+                Debug.Log(successTime);
+                if (isBurst == false && successTime > burstTime)
+                {
+                    Debug.Log("burst");
+                    // 燃える処理を書く
+                    Burst();
+                    isBurst = true;
+                }
+            
+            
         }
         else
         {
