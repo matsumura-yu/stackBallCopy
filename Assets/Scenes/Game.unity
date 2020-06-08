@@ -813,6 +813,8 @@ GameObject:
   - component: {fileID: 1378624820}
   - component: {fileID: 1378624824}
   - component: {fileID: 1378624825}
+  - component: {fileID: 1378624826}
+  - component: {fileID: 1378624827}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -930,6 +932,41 @@ MonoBehaviour:
   isBurst: 0
   fallSpeed: 0.01
   system: {fileID: 1772404543}
+--- !u!95 &1378624826
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378624819}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 609dd0a523e684e308537d04d0b4ce70, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1378624827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378624819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc467b36af9b4a818a58e55e2e60086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  rig: {fileID: 0}
+  velocity: 0
+  isFalling: 0
 --- !u!1 &1394920130 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5374911769838918609, guid: 3c2faf6cfa33244e2b03cc49246406bf,

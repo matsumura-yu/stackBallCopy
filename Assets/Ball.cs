@@ -6,6 +6,8 @@ public class Ball : MonoBehaviour
 {
     Rigidbody rb;
 
+    public Animator anim;
+
     public float jumpHeight;
 
     public bool onClicked;
@@ -25,6 +27,7 @@ public class Ball : MonoBehaviour
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
+        anim = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -97,11 +100,13 @@ public class Ball : MonoBehaviour
         {
             SceneManager.Instance.currentGameState = GameState.Success;
             Jump();
+            anim.Play("OnBound");
         }
         else
         {
             if (onClicked)
             {
+                anim.Play("Idle");
                 // 失敗時
                 if(!isBurst && collision.gameObject.CompareTag("Hard"))
                 {
@@ -118,6 +123,7 @@ public class Ball : MonoBehaviour
             }
             else
             {
+                anim.Play("OnBound");
                 Jump();
             }
         }
