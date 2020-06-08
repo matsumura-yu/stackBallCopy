@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1757527a0d5864485b8e163e610a0036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 0.7
+  rotateSpeed: 0.65
 --- !u!1 &886536108
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,7 +925,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d4a5ab0dfde4439ab4ffb072bb4756f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
   jumpHeight: 2
   onClicked: 0
   burstTime: 2.5
